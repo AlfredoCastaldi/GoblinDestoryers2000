@@ -6,10 +6,5 @@ public class Main {
 
 
          Eroe.heroCreation();
-
-
-
-
-
     }
 }
