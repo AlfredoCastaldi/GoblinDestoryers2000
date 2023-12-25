@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Eroe {
 
@@ -7,6 +8,7 @@ public class Eroe {
     private int heroHp;
 
     private String[] classi = {"warrior", "mage", "archer"};
+    private ArrayList<HeroAbilities> heroSkills = new ArrayList<HeroAbilities>();
 
     public Eroe() {
         Scanner input = new Scanner(System.in);
@@ -22,6 +24,7 @@ public class Eroe {
         }
         if (this.classe.equalsIgnoreCase("mage")){
             this.heroHp = 12;
+            heroSkills.add(HeroAbilities.arcaneDardus);
         }
           
     }
