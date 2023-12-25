@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 public class Eroe {
 
@@ -7,6 +9,7 @@ public class Eroe {
     private int heroHp;
 
     private String[] classi = {"warrior", "mage", "archer"};
+    private ArrayList<Skills> skills = new  ArrayList<>();
 
     public Eroe() {
         Scanner input = new Scanner(System.in);
@@ -16,9 +19,11 @@ public class Eroe {
         this.classe = classi[input.nextInt()];
         if (this.classe.equalsIgnoreCase("warrior")){
             this.heroHp = 20;
+            Collections.addAll(skills, Skills.Slash, Skills.Price, Skills.Steady);
         }
         if (this.classe.equalsIgnoreCase("archer")){
             this.heroHp = 16;
+            Collections.addAll(skills, Skills.multiShot, Skills.poisonShot, Skills.steadyShot);
         }
         if (this.classe.equalsIgnoreCase("mage")){
             this.heroHp = 12;

@@ -1,6 +1,4 @@
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Goblin {
@@ -8,7 +6,7 @@ public class Goblin {
     public static ArrayList<Goblin> goblins = new ArrayList<Goblin>();
     private static final String[] goblinType = {"goblin shaman","goblin warrior","goblin archer"};
 
-    public ArrayList<GoblinSkills> goblinAbilities = new ArrayList<GoblinSkills>();
+    public ArrayList<Skills> goblinAbilities = new ArrayList<Skills>();
 
     private int goblinHp;
     private String goblinName;
@@ -19,17 +17,20 @@ public class Goblin {
       if (indexProva < 0.40){
             this.goblinName = goblinType[1];
             this.goblinHp = 10;
+            this.goblinMana = 0;
         }
         if (indexProva < 0.80 && indexProva > 0.40){
             this.goblinName = goblinType[2];
             this.goblinHp = 6;
-            Collections.addAll(goblinAbilities, GoblinSkills.poisonShot, GoblinSkills.steadyShot,
-            GoblinSkills.multiShot);
+            this.goblinMana = 0;
+            Collections.addAll(goblinAbilities, Skills.poisonShot, Skills.steadyShot,
+            Skills.multiShot);
 
         }
         if (indexProva > 0.80){
             this.goblinName = goblinType[0];
             this.goblinHp = 4;
+            this.goblinMana = 10;
         }
     }
 
@@ -53,5 +54,9 @@ public class Goblin {
     }
     public int getGoblinHp(){
         return this.goblinHp;
+    }
+
+    public int getGoblinMana() {
+      return goblinMana;
     }
 }
