@@ -2,7 +2,6 @@ public enum HeroAbilities {
     // skills mago
     fireball(20, "no status",true),
     scorch(10, "burn", false),
-
     arcaneDardus(5, "cannot miss", false);
 
     public int dmg;

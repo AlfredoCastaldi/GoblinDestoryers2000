@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Goblin {
+public class Goblin extends Gameplay{
 
     public static ArrayList<Goblin> goblins = new ArrayList<Goblin>();
     private static String[] goblinType = {"goblin shaman","goblin warrior","goblin archer"};
@@ -37,6 +37,7 @@ public class Goblin {
     int rngGoblinSpawn = (int)(Math.random()*4)+1;
         for (int i = 1; i <= rngGoblinSpawn; i++){
             Goblin newGoblin = new Goblin(0.50);
+            System.out.println("a " + newGoblin.goblinName + " appears !");
             goblins.add(newGoblin);
         }
         System.out.println("hai incontrato " + rngGoblinSpawn + " goblin");

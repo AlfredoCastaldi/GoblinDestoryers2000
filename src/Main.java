@@ -5,7 +5,9 @@ public class Main {
         String[] goblinType = {"goblin shaman","goblin warrior","goblin archer"};
 
 
-         Eroe.heroCreation();
+
+         Goblin.incontroCasuale();
+         Gameplay.gestioneIncontro();
 
 
 

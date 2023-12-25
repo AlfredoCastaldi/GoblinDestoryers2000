@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Eroe {
+public class Eroe extends Gameplay{
 
+    public static Eroe[] myHeroes = new Eroe[1];
     private String name;
     private String classe;
-
     private int heroHp;
 
     private String[] classi = {"warrior", "mage", "archer"};
-    private ArrayList<HeroAbilities> heroSkills = new ArrayList<HeroAbilities>();
+    public ArrayList<HeroAbilities> heroSkills = new ArrayList<HeroAbilities>();
 
     public Eroe() {
         Scanner input = new Scanner(System.in);
@@ -29,11 +29,13 @@ public class Eroe {
           
     }
 
-    public static void heroCreation() {
+    public static Eroe heroCreation() {
         Eroe hero = new Eroe();
         System.out.println("nome " + hero.name);
         System.out.println("classe " + hero.classe);
         System.out.println("punti vita " + hero.heroHp);
+        return hero;
+
     }
     public String getName(){
         return this.name;
