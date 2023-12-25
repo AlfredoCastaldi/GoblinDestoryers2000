@@ -1,43 +1,46 @@
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Goblin extends Gameplay{
 
     public static ArrayList<Goblin> goblins = new ArrayList<Goblin>();
-    private static String[] goblinType = {"goblin shaman","goblin warrior","goblin archer"};
+    private static final String[] goblinType = {"goblin shaman","goblin warrior","goblin archer"};
 
-    public ArrayList<GoblinSkills> goblinAbilities = new ArrayList<GoblinSkills>();
+    public ArrayList<Skills> goblinAbilities = new ArrayList<Skills>();
 
     private int goblinHp;
     private String goblinName;
     private int goblinMana;
 
-    public Goblin(double indexProva){
-        double rngClass = indexProva;
-        if (rngClass < 0.40){
-            this.goblinName = this.goblinType[1];
+    public Goblin(){
+        double indexProva = Math.random();
+      if (indexProva < 0.40){
+            this.goblinName = goblinType[1];
             this.goblinHp = 10;
+            this.goblinMana = 0;
         }
-        if (rngClass < 0.80 && rngClass > 0.40){
-            this.goblinName = this.goblinType[2];
+        if (indexProva < 0.80 && indexProva > 0.40){
+            this.goblinName = goblinType[2];
             this.goblinHp = 6;
-            Collections.addAll(goblinAbilities, GoblinSkills.poisonShot, GoblinSkills.steadyShot,
-            GoblinSkills.multiShot);
+            this.goblinMana = 0;
+            Collections.addAll(goblinAbilities, Skills.poisonShot, Skills.steadyShot,
+            Skills.multiShot);
 
         }
-        if (rngClass > 0.80){
-            this.goblinName = this.goblinType[0];
+        if (indexProva > 0.80){
+            this.goblinName = goblinType[0];
             this.goblinHp = 4;
+            this.goblinMana = 10;
         }
     }
 
     public static void incontroCasuale(){
     int rngGoblinSpawn = (int)(Math.random()*4)+1;
         for (int i = 1; i <= rngGoblinSpawn; i++){
-            Goblin newGoblin = new Goblin(0.50);
+
+           
             System.out.println("a " + newGoblin.goblinName + " appears !");
+            Goblin newGoblin = new Goblin();
             goblins.add(newGoblin);
         }
         System.out.println("hai incontrato " + rngGoblinSpawn + " goblin");
@@ -54,5 +57,9 @@ public class Goblin extends Gameplay{
     }
     public int getGoblinHp(){
         return this.goblinHp;
+    }
+
+    public int getGoblinMana() {
+      return goblinMana;
     }
 }
