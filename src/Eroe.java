@@ -51,6 +51,9 @@ public class Eroe extends Gameplay{
     public String getClasse(){
         return this.classe;
     }
+
+    public int getHeroHp(){ return  this.heroHp;}
+    public void setHeroHp(int hp){this.heroHp = hp;}
 }
 
 
