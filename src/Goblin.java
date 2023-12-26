@@ -18,12 +18,13 @@ public class Goblin extends Gameplay{
             this.goblinName = goblinType[1];
             this.goblinHp = 10;
             this.goblinMana = 0;
+          goblinAbilities.add(Skills.autoAttackGoblin);
         }
         if (indexProva < 0.80 && indexProva > 0.40){
             this.goblinName = goblinType[2];
             this.goblinHp = 6;
             this.goblinMana = 0;
-            Collections.addAll(goblinAbilities, Skills.poisonShot, Skills.steadyShot,
+            Collections.addAll(goblinAbilities, Skills.autoAttackGoblin, Skills.poisonShot, Skills.steadyShot,
             Skills.multiShot);
 
         }
@@ -31,6 +32,7 @@ public class Goblin extends Gameplay{
             this.goblinName = goblinType[0];
             this.goblinHp = 4;
             this.goblinMana = 10;
+            goblinAbilities.add(Skills.autoAttackGoblin);
         }
     }
 
