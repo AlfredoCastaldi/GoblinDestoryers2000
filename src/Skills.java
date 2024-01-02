@@ -5,9 +5,7 @@ public enum Skills {
     Price(2, StatusEffect.None,false),
     Steady(0, StatusEffect.Taunt,false),
     multiShot (2, StatusEffect.None,true),
-
     autoAttackGoblin (1,StatusEffect.None,false),
-
     fireball(10, StatusEffect.Fire,true),
     scorch(5, StatusEffect.Fire, false),
     arcaneDardus(5, StatusEffect.None, false);
