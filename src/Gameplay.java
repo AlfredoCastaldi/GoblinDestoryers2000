@@ -17,63 +17,83 @@ public class Gameplay {
         Scanner input = new Scanner(System.in);
         // per la vita dei nemici un for che itera attraverso tutti i nemici e ne somma la vita
         int heroHp = Eroe.myHeroes[0].getHeroHp();
+        int expGain = 0;
 
         System.out.println("stai affrontando " + Goblin.goblins.size() + " goblins");
         // qui inizia l'incontro ed il while principale
+
         while (!Goblin.goblins.isEmpty() && heroHp > 0) {
-            for (int i = 0; i < Goblin.goblins.size(); i++) {
-                System.out.println(i + 1 + ": " + Goblin.goblins.get(i).getGoblinName() +
-                        " Hp: " + Goblin.goblins.get(i).getGoblinHp());
-            }
 
-            int bersaglio = input.nextInt() -1;
-            System.out.println("scegli la tua abilità ");
-            for (int i = 0; i < Eroe.myHeroes[0].skills.size(); i++) {
-                System.out.print(i + ": ");
-                System.out.println(Eroe.myHeroes[0].skills.get(i));
-            }
+                for (int i = 0; i < Goblin.goblins.size(); i++) {
+                    System.out.println(i + 1 + ": " + Goblin.goblins.get(i).getGoblinName() +
+                            " Hp: " + Goblin.goblins.get(i).getGoblinHp());
+                }
+                System.out.println("scegli il tuo bersaglio");
 
-            int abilità = input.nextInt();
+                int bersaglio = input.nextInt() -1;
+                System.out.println("scegli la tua abilità ");
+                for (int i = 0; i < Eroe.myHeroes[0].skills.size(); i++) {
+                    System.out.print(i + ": ");
+                    System.out.println(Eroe.myHeroes[0].skills.get(i));
+                }
 
-            //una volta scelta l'abilità calcola la differenza tra hp goblin e dmg e scrive una montagna di testo
-            int danniEroe = Eroe.myHeroes[0].skills.get(abilità).damage;
-            String nomeTarget = Goblin.goblins.get(bersaglio).getGoblinName();
-            int hpTarget = Goblin.goblins.get(bersaglio).getGoblinHp();
+                int abilità = input.nextInt();
 
-            int result = hpTarget - danniEroe;
-            System.out.println(nomeTarget + " subisce " + danniEroe + " danni !");
-            System.out.println(nomeTarget + " Hp: " + (hpTarget - danniEroe));
-            Goblin.goblins.get(bersaglio).setGoblinHp(result);
+                //una volta scelta l'abilità calcola la differenza tra hp goblin e dmg e scrive una montagna di testo
+                int danniEroe = Eroe.myHeroes[0].skills.get(abilità).damage;
+                String nomeTarget = Goblin.goblins.get(bersaglio).getGoblinName();
+                int hpTarget = Goblin.goblins.get(bersaglio).getGoblinHp();
 
+                int result = hpTarget - danniEroe;
+                System.out.println(nomeTarget + " subisce " + danniEroe + " danni !");
+                System.out.println(nomeTarget + " Hp: " + (hpTarget - danniEroe));
+                Goblin.goblins.get(bersaglio).setGoblinHp(result);
 
-            if (result <= 0){
-                System.out.println(nomeTarget + " Schiatta malissimo!");
-                Goblin.goblins.remove(bersaglio);
-            }
-            if (!Goblin.goblins.isEmpty()){
-            System.out.println("turno dei goblins");
-                 for (int i = 0; i < Goblin.goblins.size(); i++){
+                if (result <= 0){
+                    System.out.println(nomeTarget + " Schiatta malissimo!");
+                    expGain += Goblin.goblins.get(bersaglio).expDrop;
+                    Eroe.myHeroes[0].setExp( expGain);
+                    System.out.println(Eroe.myHeroes[0].getName() + " guadagna " + Goblin.goblins.get(bersaglio).expDrop + " exp");
+                    Goblin.goblins.remove(bersaglio);
 
-                        System.out.println(Goblin.goblins.get(i).getGoblinName() + " sferra il suo attacco !");
-                        int goblinDmg = Goblin.goblins.get(i).goblinAbilities.get(0).damage;
-                        heroHp -= goblinDmg;
-                        System.out.println(Eroe.myHeroes[0].getName() + " subisce " + goblinDmg + " danni !");
-                        if (heroHp <= 0){
-                            break;
-                        }
-                 }
-            }
+                }
+                if (!Goblin.goblins.isEmpty()){
+                System.out.println("turno dei goblins");
+                     for (int i = 0; i < Goblin.goblins.size(); i++){
+
+                            System.out.println(Goblin.goblins.get(i).getGoblinName() + " sferra il suo attacco !");
+                            int goblinDmg = Goblin.goblins.get(i).goblinAbilities.get(0).damage;
+                            heroHp -= goblinDmg;
+                            Eroe.myHeroes[0].setHeroHp(heroHp);
+                            System.out.println(Eroe.myHeroes[0].getName() + " subisce " + goblinDmg + " danni !");
+
+                            if (heroHp <= 0){
+                                break;
+                            }
+                     }
+                }
+                if (heroHp <= 0){
+                    break;
+                }
+                Eroe.myHeroes[0].setHeroHp(heroHp);
+                System.out.println(Eroe.myHeroes[0].getName() + " Hp: " + Eroe.myHeroes[0].getHeroHp());
+
+            // fine ciclo while
             if (heroHp <= 0){
-                break;
-            }
-            Eroe.myHeroes[0].setHeroHp(heroHp);
-            System.out.println(Eroe.myHeroes[0].getName() + " Hp: " + Eroe.myHeroes[0].getHeroHp());
+                System.out.println("GAME OVER");
+            } else {
+                System.out.println(" VICTORY FANFARE !!! ");
+                System.out.println(" la tua esperienza è " + Eroe.myHeroes[0].getExp());
+                    if (Eroe.myHeroes[0].getExp() >= Eroe.myHeroes[0].expToLvlUp){
+                    Eroe.myHeroes[0].lvlUpHero();
+                    System.out.println(Eroe.myHeroes[0].getName() + " LEVEL UP !!!");
+
+                   }
+                }
+
+
+
         }
-        // fine ciclo while
-        if (heroHp <= 0){
-            System.out.println("GAME OVER");
-        } else {
-        System.out.println(" VICTORY FANFARE !!! ");
-        }
+
     }
 }

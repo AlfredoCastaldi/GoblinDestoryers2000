@@ -9,8 +9,12 @@ public class Eroe extends Gameplay{
     private String name;
     private String classe;
     private int heroHp;
+    private int heroLvl = 1;
+    private int exp = 0;
 
-    private String[] classi = {"warrior", "mage", "archer"};
+    protected int expToLvlUp = 4;
+
+    private static String[] classi = {"warrior", "mage", "archer"};
     
   protected ArrayList<Skills> skills = new  ArrayList<>(); // no private per provare gameplay
 
@@ -23,18 +27,19 @@ public class Eroe extends Gameplay{
         this.classe = classi[input.nextInt()];
         if (this.classe.equalsIgnoreCase("warrior")){
             this.heroHp = 20;
-            Collections.addAll(skills, Skills.Slash, Skills.Price, Skills.Steady);         //prende da skill
+            Collections.addAll(skills, Skills.Slash, Skills.Price, Skills.Steady);
+
         }
         if (this.classe.equalsIgnoreCase("archer")){
             this.heroHp = 16;
             Collections.addAll(skills, Skills.multiShot, Skills.poisonShot, Skills.steadyShot);
+
         }
         if (this.classe.equalsIgnoreCase("mage")){
             this.heroHp = 12;
             Collections.addAll(skills, Skills.fireball, Skills.scorch, Skills.arcaneDardus);
-        }
 
-          
+        }
     }
 
     public static void heroCreation() {
@@ -52,8 +57,24 @@ public class Eroe extends Gameplay{
         return this.classe;
     }
 
+    public int getExp(){
+        return this.exp;
+    }
+    public void setExp(int exp){
+        this.exp = exp;
+    }
+
     public int getHeroHp(){ return  this.heroHp;}
     public void setHeroHp(int hp){this.heroHp = hp;}
+
+    public void lvlUpHero(){
+        this.heroLvl++;
+    }
+    public int getHeroLvl(){
+        return this.heroLvl;
+    }
+
+
 }
 
 
