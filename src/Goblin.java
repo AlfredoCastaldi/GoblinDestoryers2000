@@ -4,6 +4,8 @@ import java.util.ArrayList;
 public class Goblin extends Gameplay{
 
     public static ArrayList<Goblin> goblins = new ArrayList<Goblin>();
+
+
     private static final String[] goblinType = {"goblin shaman","goblin warrior","goblin archer"};
     public ArrayList<Skills> goblinAbilities = new ArrayList<Skills>();
     private int goblinHp;

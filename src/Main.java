@@ -5,5 +5,6 @@ public class Main {
      Eroe.heroCreation();
      Goblin.incontroCasuale();
      Gameplay.gestioneIncontro();
+
     }
 }

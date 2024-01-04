@@ -11,6 +11,7 @@ public enum Skills {
     arcaneDardus(5, StatusEffect.None, false);
 
     public Boolean isArea;
+    
 
     public int damage;
     public StatusEffect statusEffect;
